@@ -1,0 +1,514 @@
+/* Css class dùng chung */
+:root{
+    --primary-color:#ee4d2d;
+    --while-color: #fff;
+    --black-color: #000;
+    --hover-color:#f05d40;
+    --text-color: #333;
+    --star-gold-color: #FFCE3E;
+    --border-color: #dbdbdb;
+    --header-height: 120px;
+    --navbar-height: 32px;
+    --header-with-search-height: calc(var(--header-height ) - var(--navbar-height));
+    --header-sort-bar-height: 46px;
+}
+
+*{
+    box-sizing: inherit;
+}
+
+html{
+     font-size: 62.5%;  /*quy đổi ra đơn vị 1rem = 10px */
+     line-height: 1.6rem;   /*quy đổi ra đơn vị 1.6rem = 16px */
+     font-family: "Roboto", sans-serif;
+     box-sizing: border-box;
+}
+
+/* Responsive */
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.grid__column-2{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16.667%;
+}
+
+.grid__column-2-4{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;
+}
+
+.grid__column-10{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.333%;
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+
+@keyframes growth{
+    from{
+        transform: scale(var(--grow-from));    /* Đặt biến cho animation để dùng lại */
+    }to{
+        transform: scale(var(--grow-to));
+    }
+}
+
+/* Modal */
+
+.modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    animation: fadeIn ease-in 0.1s;
+}
+
+.modal__overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body{
+    --grow-from: 0.7;
+    --grow-to: 1;
+    margin: auto;
+    position: relative;         /* Cho nó nổi cái body lên trên tầng cao nhất của layout vì có thuộc tính position relative là cao nhất*/
+    z-index: 1;                 /* Dù có viết trước hay viết sau thì body vẫn nổi lên cao nhất vì có z-index:1*/
+    animation: growth linear 0.1s;
+}
+
+/* Button style*/
+.btn{
+    height: 34px;
+    min-width: 124px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+}
+
+
+.btn.btn--normal:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn.btn--size-s{
+    height: 32px;
+    font-size: 12px;
+    padding: 0 8px;
+}
+
+.btn.btn--primary{
+    background-color: var(--primary-color);
+    color: var(--while-color);
+}
+
+.btn.btn--disabled{
+    cursor: default;
+    color: #949494;
+    background-color: #c3c3c3;
+}
+
+/* Selection */
+.select-input{
+    position: relative;
+    min-width: 200px;
+    height: 34px;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.select-input__label{
+    font-size: 1.4rem;
+    color: #555555
+}
+
+.select-input__icon{
+    color: #4a4a4a;
+    font-size: 1.4rem;
+    position: relative;
+    top: 1px;
+}
+
+.select-input:hover .select-input__list{
+    display: block;
+}
+
+.select-input__list{
+    position: absolute;
+    top: 73%;
+    left: 0;
+    background-color:var(--while-color);
+    right: 0;
+    list-style: none;
+    padding:0 14px 0;
+    border-radius: 2px;
+    display: none;
+    z-index: 1;
+}
+
+.select-input__item--active{
+    color: var(--primary-color);
+}
+
+.select-input__item{
+    font-size: 1.3rem;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-input__item:hover{
+    color: var(--primary-color);
+}
+
+/* Product Item */
+
+.home-product{
+    margin-bottom: 10px;
+}
+.home-product-item{
+    display: block;
+    margin-top: 10px;
+    background-color: var(--while-color);
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    transition: transform ease-in 0.1s;
+    will-change: transform;
+}
+
+.home-product-item:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.home-product-item__img{
+    padding-top: 100%;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.home-product-item__name{
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 400;
+    line-height: 1.8rem;
+    height: 3.6rem;
+    margin: 10px 10px 6px;
+    overflow: hidden;
+    display: block;             /* khi không chạy được thuộc tính webkit thì sẽ chạy block */
+    display: -webkit-box;       /* chỉ chạy trên browser webkit */
+    -webkit-box-orient: vertical;       /* Theo hướng chiều dọc của dòng chữ */
+    -webkit-line-clamp: 2;          /* Cho phép giới hạng bao nhiêu dòng thì giá trị bấy nhiêu */
+}
+
+.home-product-item__price{
+    display: flex;
+    align-items: baseline;              /* Lấy cái chân của dòng căn đêu ngang */
+    flex-wrap: wrap;
+}
+
+.home-product-item__price-old{
+    font-size: 1.4rem;
+    margin-left: 10px;
+    color: #666;
+    text-decoration: line-through;          /*Dấu gạch giữa chữ*/
+}
+
+.home-product-item__price-current{
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+
+.home-product-item__action{
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 8px 0;
+}
+
+.home-product-item__like{
+    font-size: 1.3rem;
+}
+
+.home-product-item__like--liked{
+
+}
+
+.home-product-item__like--liked .home-product-item__like-icon-fill{
+    display: inline-block;
+}
+
+.home-product-item__like--liked .home-product-item__like-icon-emty{
+    display: none;
+}
+
+.home-product-item__like-icon-emty{
+
+}
+
+
+.home-product-item__like-icon-fill{
+    color: #ff2f28;
+    display: none;
+}
+
+.home-product-item__rating{
+    font-size: 0.8rem;
+    color: #D5D5D5;
+    margin: -1px 0 0 auto;
+}
+
+.home-product-item__star--gold{
+    color: var(--star-gold-color);
+}
+
+.home-product-item__sold{
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-left: 6px;
+}
+
+.home-product-item__origin{
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 10px;
+    color: #757575;
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding-bottom: 6px;
+}
+
+.home-product-item__brand{
+
+}
+
+.home-product-item__origin-name{
+
+}
+
+.home-product-item__favorite{
+    position: absolute;
+    top: 10px;
+    left: -4px;
+    color: var(--primary-color);
+    background-color: currentColor;        /*Ăn theo màu chủ đạo của background*/
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-right: 4px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.home-product-item__favorite::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    border-top: 4px solid currentColor;      /*Tam giác dưới nhã yêu thích*/
+    border-left: 4px solid transparent;
+    filter: brightness(60%);                 /*Giảm độ sáng của tam giác dưới nhãn yêu thích*/
+}
+
+.home-product-item__favorite span{
+    color: var(--while-color);
+}
+
+.home-product-item__favorite i {
+    color: var(--while-color);
+    font-size: 0.9rem;
+    margin: 0 2px 0 5px;
+}
+
+.home-product-item__sale-off{
+    position: absolute;
+    border-top-right-radius: 2px;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 36px;
+    background-color: rgb(255, 233, 122, 0.94);
+    text-align: center;
+}
+
+.home-product-item__sale-off::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    border-width: 0 20px 6px;                   /*Pseudo ở dưới class giảm giá*/
+    border-style: solid;
+    border-color: transparent rgb(255, 233, 122, 0.94) transparent rgb(255, 233, 122, 0.94);
+}
+
+.home-product-item__sale-off-percent{
+    color: #ec412d;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.2rem;
+    position: relative;
+    top: 3px;
+}
+
+.home-product-item__sale-off-label{
+    font-size: 1.3rem;
+    color: var(--while-color);
+    font-weight: 600;
+}
+
+/* Pagination */
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination-item{
+    margin: 0 12px;
+}
+
+.pagination-item--active .pagination-item__link{
+    background-color: var(--primary-color);
+    color: var(--while-color);
+}
+
+.pagination-item--active .pagination-item__link:hover{
+    background-color: var(--hover-color);
+}
+
+.pagination-item__link{
+    --height: 30px;
+    display: block;
+    font-weight: 300;
+    text-decoration: none;
+    font-size: 2rem;
+    color: #939393;
+    min-width: 40px;
+    height: var(--height);
+    text-align: center;
+    line-height: var(--height);
+    border-radius: 2px;
+}
+
+.pagination-item__icon{
+
+}
+
+/* Footer */
+
+.footer{
+    padding-top: 16px;
+    border-top: 4px solid var(--primary-color);
+    background-color: var(--while-color);
+}
+
+.footer__heading{
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.footer-list{
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer-item{
+
+}
+
+.footer-item__link{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #737373;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+}
+
+.footer-item__link:hover{
+    color: var(--primary-color);
+}
+
+.footer-item__icon{
+    font-size: 1.6rem;
+    margin-right: 8px;
+}
+
+.footer__download{
+    display: flex;
+}
+
+.footer__download-apps{
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer__download-qr{
+    width: 80px;
+    border: 1px solid var(--border-color);
+}
+
+.footer__download-app-img{
+    height: 16px;
+}
+
+.footer__download-app-link{
+    text-decoration: none;
+    color: transparent;
+}
+
+.footer__bottom{
+    padding: 8px 0;
+    margin-top: 32px;
+    background-color: #f5f5f5;
+}
+
+.footer__text{
+    margin: 0;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #737373;
+}
